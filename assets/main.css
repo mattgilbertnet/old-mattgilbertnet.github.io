@@ -530,6 +530,15 @@ th {
 #logo_header {
   max-height: 126px; }
 
+@media (max-width: 700px) {
+  .page-header {
+    height: 82px;
+    background-image: url("/assets/images/header_bg.png");
+    background-repeat: no-repeat;
+    background-size: 602px 82px; }
+
+  #logo_header {
+    max-height: 82px; } }
 main.page-content {
   padding-left: 20rem; }
 
