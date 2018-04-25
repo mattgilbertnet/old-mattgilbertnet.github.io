@@ -1,34 +1,49 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-<div class="home">
-  {%- if page.title -%}
-    <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+  {%- include head.html -%}
 
-  {{ content }}
+  <body>
 
-  {%- if site.posts.size > 0 -%}
-    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-    <ul class="post-list">
-      {%- for post in site.posts -%}
-      <li>
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
-        {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
+    {%- include header.html -%}
+    
+    
+    <div class="container">
 
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
-  {%- endif -%}
+<main class="front-content" aria-label="Content">
+  <div class="wrapper">
+		<div class="front-researchareas two-thirds column">
+			<h2 class="title"><a href="/research">{{ site.data.locale.research_areas }}</a></h2>
+			<div class="front-researchareas-list six columns">
+				<ul id="front-researchareas-ul">
+			  	{% for researcharea in site.researchareas %} 
+      			{% for area in site.pages %} 
+        			{% if area.id == researcharea %}
+        				<li><span class="li_inner">{{ area.title }}</span></li>
+							{% endif %}
+						{% endfor %}
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="front-researchtopics-list six columns">
+				<ul id="front-researchtopics-ul">
+				</ul>
+			</div>
+		</div>
+		<div class="front-about one-third column">
+			<h2 class="title"><a href="/about.html">About</a></h2>  
+				<ul id="front-about-ul">
+					<li><span class="li-inner"><a href="http://sciencecareers.sciencemag.org/career_magazine/previous_issues/articles/2006_12_29/nodoi.8192153396159846039">SCIENCE profile</a></span></li>
+					<li><span>Resume <a href="/assets/peterlu_resume.pdf"><img src="/assets/pdf.gif"></a></span></li>
+					<li><span>Wikipedia: <a href="http://en.wikipedia.org/wiki/Peter_Lu">[EN]</a> <a href="http://de.wikipedia.org/wiki/Peter_Lu">[DE]</a> <a href="http://fr.wikipedia.org/wiki/Peter_lu">[FR]</a>
+					</span></li>
+				</ul>
+	</div>
+</main>
+    </div>
+    
+    {%- include footer.html -%}
 
-</div>
+  </body>
+
+</html>
